@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cute New Tab</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fce4ec; /* パステルピンクの背景（好きな色に変えてね） */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        /* ロゴ部分の設定 */
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ff4081; /* 可愛いピンク */
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* 画像をロゴにしたい場合は、下のコメントアウトを解除して使ってください */
+        /*
+        .logo-img {
+            max-width: 250px;
+            margin-bottom: 30px;
+        }
+        */
+
+        /* 検索バーの設定 */
+        .search-form {
+            width: 100%;
+        }
+
+        .search-input {
+            width: 80%;
+            padding: 15px 25px;
+            font-size: 16px;
+            border: 2px solid #ff80ab;
+            border-radius: 30px;
+            outline: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 4px 12px rgba(255, 128, 171, 0.4);
+            border-color: #ff4081;
+        }
+
+        /* ショートカットアイコンの並び */
+        .shortcuts {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .shortcut-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+            width: 80px;
+        }
+
+        .shortcut-icon {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 8px;
+            font-size: 24px;
+            transition: transform 0.2s;
+        }
+
+        .shortcut-item:hover .shortcut-icon {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">Googles𖹭</div>
+        <form action="https://www.google.com/search" method="get" class="search-form">
+            <input type="text" name="q" class="search-input" placeholder="ここからGoogle検索できるよ 𐙚" autofocus autocomplete="off">
+        </form>
+
+        <div class="shortcuts">
+            <a href="https://github.com" class="shortcut-item">
+                <div class="shortcut-icon">🐈</div>
+                <span>GitHub</span>
+            </a>
+            <a href="https://youtube.com" class="shortcut-item">
+                <div class="shortcut-icon">📺</div>
+                <span>YouTube</span>
+            </a>
+            <a href="https://twitter.com" class="shortcut-item">
+                <div class="shortcut-icon">🕊️</div>
+                <span>X</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

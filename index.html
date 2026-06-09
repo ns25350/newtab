@@ -9,13 +9,95 @@
             margin: 0;
             padding: 0;
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f8ec9f; /* パステルピンクの背景（好きな色に変えてね） */
+            background-color: #f8ec9f; /* バナナの背景 */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            position: relative;
         }
+
+        /* 右上のGoogleアプリメニュー */
+        .apps-menu-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .apps-icon {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .apps-icon:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .apps-dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 15px;
+            width: 320px; 
+            max-height: 450px; /* メニューが長くなったのでスクロールできるように */
+            overflow-y: auto;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .apps-menu-container:hover .apps-dropdown {
+            display: grid;
+        }
+
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #3c4043;
+            font-size: 12px; /* 文字が入り切るように少し小さめに */
+            text-align: center;
+            padding: 10px 5px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .app-item:hover {
+            background-color: #f1f3f4;
+        }
+
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 6px;
+            font-size: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* メニューのスクロールバーを可愛く隠す設定 */
+        .apps-dropdown::-webkit-scrollbar {
+            width: 6px;
+        }
+        .apps-dropdown::-webkit-scrollbar-thumb {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+        }
+
 
         .container {
             text-align: center;
@@ -24,24 +106,14 @@
             padding: 20px;
         }
 
-        /* ロゴ部分の設定 */
         .logo {
             font-size: 4rem;
             font-weight: bold;
-            color: #EFCD00; /* ばなな */
+            color: #EFCD00;
             margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
-        
-        /* 画像をロゴにしたい場合は、下のコメントアウトを解除して使ってください */
-        /*
-        .logo-img {
-            max-width: 250px;
-            margin-bottom: 30px;
-        }
-        */
 
-        /* 検索バーの設定 */
         .search-form {
             width: 100%;
         }
@@ -50,7 +122,7 @@
             width: 80%;
             padding: 15px 25px;
             font-size: 16px;
-            border: 2px solid #ff80ab;
+            border: 2px solid #EFCD00;
             border-radius: 30px;
             outline: none;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -58,11 +130,10 @@
         }
 
         .search-input:focus {
-            box-shadow: 0 4px 12px rgba(255, 128, 171, 0.4);
-            border-color: #ff4081;
+            box-shadow: 0 4px 12px rgba(239, 205, 0, 0.4);
+            border-color: #d4b500;
         }
 
-        /* ショートカットアイコンの並び */
         .shortcuts {
             margin-top: 40px;
             display: flex;
@@ -101,6 +172,65 @@
     </style>
 </head>
 <body>
+
+    <div class="apps-menu-container">
+        <div class="apps-icon" title="Google アプリ">
+            <svg focusable="false" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z" fill="#5f6368"></path>
+            </svg>
+        </div>
+        
+        <div class="apps-dropdown">
+            <a href="https://mail.google.com/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>Gmail</span>
+            </a>
+            <a href="https://drive.google.com/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>ドライブ</span>
+            </a>
+            <a href="https://calendar.google.com/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>カレンダー</span>
+            </a>
+            <a href="https://docs.google.com/document/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>ドキュメント</span>
+            </a>
+            <a href="https://docs.google.com/spreadsheets/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>スプレッド</span>
+            </a>
+            <a href="https://docs.google.com/presentation/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>スライド</span>
+            </a>
+            <a href="https://docs.google.com/forms/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>フォーム</span>
+            </a>
+            <a href="https://www.youtube.com/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>YouTube</span>
+            </a>
+            <a href="https://maps.google.com/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>マップ</span>
+            </a>
+            <a href="https://photos.google.com/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>フォト</span>
+            </a>
+            <a href="https://translate.google.com/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>翻訳</span>
+            </a>
+            <a href="https://www.google.com/" class="app-item">
+                <div class="app-icon">🍌</div>
+                <span>Google検索</span>
+            </a>
+        </div>
+    </div>
 
     <div class="container">
         <div class="logo">BANANA</div>
